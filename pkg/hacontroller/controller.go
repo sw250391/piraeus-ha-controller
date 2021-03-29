@@ -453,14 +453,12 @@ func (hac *haController) removeFromVA(va *storagev1.VolumeAttachment) {
 }
 
 func (hac *haController) reconcile(ctx context.Context) {
-	log.Trace("start reconciling failing volume attachments")
 	errs := hac.removeFailingVolumeAttachments(ctx)
 	if len(errs) != 0 {
 		// These are "expected errors", in the sense that we can retry the operation again at a later time.
 		// No reason to stop the loop here...
 		log.WithField("errs", errs).Info("failed to clean up lost resources")
 	}
-	log.Trace("finished reconciling failing volume attachments")
 }
 
 // Try to remove all pods and volume attachments that are known to be failing.
@@ -510,14 +508,12 @@ func (hac *haController) removeFailingVolumeAttachments(ctx context.Context) []e
 				continue
 			}
 		}
-		hac.removeFromPVC(pvc)
 
 		err := hac.forceDetach(ctx, attachment)
 		if err != nil {
 			reconcileErrors = append(reconcileErrors, err)
 			continue
 		}
-		hac.removeFromVA(attachment)
 
 		reconciledVAs = append(reconciledVAs, pvName)
 	}

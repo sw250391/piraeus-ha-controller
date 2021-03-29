@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"time"
 
-	lclient "github.com/LINBIT/golinstor/client"
-	lmonitor "github.com/LINBIT/golinstor/monitor"
+	lclient "github.com/sw250391/golinstor/client"
+	lmonitor "github.com/sw250391/golinstor/monitor"
 	"github.com/henvic/ctxsignal"
 	log "github.com/sirupsen/logrus"
 	flag "github.com/spf13/pflag"
@@ -20,9 +20,9 @@ import (
 	"k8s.io/client-go/tools/leaderelection/resourcelock"
 	"k8s.io/client-go/tools/record"
 
-	"github.com/piraeusdatastore/piraeus-ha-controller/pkg/consts"
-	"github.com/piraeusdatastore/piraeus-ha-controller/pkg/hacontroller"
-	"github.com/piraeusdatastore/piraeus-ha-controller/pkg/k8s"
+	"github.com/sw250391/piraeus-ha-controller/pkg/consts"
+	"github.com/sw250391/piraeus-ha-controller/pkg/hacontroller"
+	"github.com/sw250391/piraeus-ha-controller/pkg/k8s"
 )
 
 type args struct {
